@@ -21,7 +21,7 @@ type Owner struct {
 	name           string
 	id             int64
 	client         *githubv4.Client
-	StopContext    context.Context
+	Context        context.Context
 	IsOrganization bool
 }
 
