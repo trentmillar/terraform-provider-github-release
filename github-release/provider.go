@@ -1,4 +1,4 @@
-package github
+package github_release
 
 import (
 	"context"
@@ -31,59 +31,11 @@ func Provider() *schema.Provider {
 				Description: descriptions["organization"],
 				Deprecated:  "Use owner (or GITHUB_OWNER) instead of organization (or GITHUB_ORGANIZATION)",
 			},
-			"base_url": {
-				Type:        schema.TypeString,
-				Optional:    true,
-				DefaultFunc: schema.EnvDefaultFunc("GITHUB_BASE_URL", "https://api.github.com/"),
-				Description: descriptions["base_url"],
-			},
 			"insecure": {
 				Type:        schema.TypeBool,
 				Optional:    true,
 				Default:     false,
 				Description: descriptions["insecure"],
-			},
-			"write_delay_ms": {
-				Type:        schema.TypeInt,
-				Optional:    true,
-				Default:     1000,
-				Description: descriptions["write_delay_ms"],
-			},
-			"read_delay_ms": {
-				Type:        schema.TypeInt,
-				Optional:    true,
-				Default:     0,
-				Description: descriptions["read_delay_ms"],
-			},
-			"app_auth": {
-				Type:        schema.TypeList,
-				Optional:    true,
-				MaxItems:    1,
-				Description: descriptions["app_auth"],
-				Elem: &schema.Resource{
-					Schema: map[string]*schema.Schema{
-						"id": {
-							Type:        schema.TypeString,
-							Required:    true,
-							DefaultFunc: schema.EnvDefaultFunc("GITHUB_APP_ID", nil),
-							Description: descriptions["app_auth.id"],
-						},
-						"installation_id": {
-							Type:        schema.TypeString,
-							Required:    true,
-							DefaultFunc: schema.EnvDefaultFunc("GITHUB_APP_INSTALLATION_ID", nil),
-							Description: descriptions["app_auth.installation_id"],
-						},
-						"pem_file": {
-							Type:        schema.TypeString,
-							Required:    true,
-							Sensitive:   true,
-							DefaultFunc: schema.EnvDefaultFunc("GITHUB_APP_PEM_FILE", nil),
-							Description: descriptions["app_auth.pem_file"],
-						},
-					},
-				},
-				ConflictsWith: []string{"token"},
 			},
 		},
 
@@ -92,7 +44,7 @@ func Provider() *schema.Provider {
 		},
 
 		DataSourcesMap: map[string]*schema.Resource{
-			//"github_release": dataSourceGithubRelease(),
+			"github_release": dataSourceGithubRelease(),
 		},
 	}
 
