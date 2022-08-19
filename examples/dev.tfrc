@@ -1,6 +1,7 @@
 provider_installation {
   dev_overrides {
-    "hashicorp/github" = "/Users/tmillar/go/bin/"
+    "hashicorp/github-release" = "/Users/tmillar/.terraform.d/plugins/github.com/trentmillar/github-release"
+    "hashicorp/github" = "/Users/tmillar/.terraform.d/plugins/github.com/trentmillar/github"
   }
 
   direct {}

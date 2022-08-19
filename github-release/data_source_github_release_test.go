@@ -20,6 +20,7 @@ func TestAccGithubReleaseDataSource(t *testing.T) {
 
 		config := fmt.Sprintf(`
 			data "github_release" "test" {
+				id = 1234
 				repository = "%s"
 				owner = "%s"
 				retrieve_by = "latest"
@@ -27,10 +28,9 @@ func TestAccGithubReleaseDataSource(t *testing.T) {
 		`, testReleaseRepository, testReleaseOwner)
 
 		resource.UnitTest(t, resource.TestCase{
-			ProviderFactories: protoV5ProviderFactories,
+			ProviderFactories: providerFactories,
 			Steps: []resource.TestStep{
 				{
-
 					Config: config,
 					Check: resource.ComposeTestCheckFunc(
 						func(s *terraform.State) error {

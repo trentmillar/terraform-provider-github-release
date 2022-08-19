@@ -7,7 +7,7 @@ import (
 var testAccProviders map[string]*schema.Provider
 var testAccProvider *schema.Provider
 
-var protoV5ProviderFactories = map[string]func() (*schema.Provider, error){
+var providerFactories = map[string]func() (*schema.Provider, error){
 	"github": func() (*schema.Provider, error) {
 		return Provider(), nil
 	},
