@@ -34,10 +34,10 @@ func TestAccGithubReleaseDataSource(t *testing.T) {
 					Config: config,
 					Check: resource.ComposeTestCheckFunc(
 						func(s *terraform.State) error {
-							rs := s.RootModule().Resources["data.sql_driver.test"]
+							rs := s.RootModule().Resources["data.github_release.test"]
 							att := rs.Primary.Attributes["name"]
-							if att != "" {
-								return fmt.Errorf("expected %q, got %q", "server.ExpectedDriver", att)
+							if att == "" {
+								return fmt.Errorf("expected 'name' to have a value")
 							}
 							return nil
 						},
